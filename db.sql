@@ -14,12 +14,12 @@ id int auto_increment primary key
 ,updated_at datetime
 ,title varchar(255)
 ,description text
+,movie_link varchar(255)
 ,movie_slug varchar(255)
 ,category varchar(255)
 ,status int
-,date_release date
+,date_release varchar(255)
 ,cover_photo varchar(500)
-,movie_country_id varchar(255)
 ,is_visible int
 );
 
@@ -33,14 +33,6 @@ id int auto_increment primary key
 ,is_visible int
 );
 
-drop table if exists movie_countries;
-create table movie_countries(
-id int auto_increment primary key
-,created_at datetime
-,updated_at datetime
-,country varchar(255)
-,is_visible int
-);
 
 drop table if exists movie_tags;
 create table movie_tags(
@@ -71,6 +63,7 @@ id int auto_increment primary key
 ,movie_id int
 ,episode_title varchar(255)
 ,episode_slug varchar(255)
+,episode_link varchar(255)
 ,status int
 ,cover_photo varchar(255)
 ,is_visible int
@@ -98,6 +91,7 @@ id int auto_increment primary key
 ,name varchar(255)
 ,star_alias varchar(255)
 ,cast_slug varchar(255)
+,cast_link varchar(255)
 ,birth_place varchar(255)
 ,height varchar(255)
 ,cover_photo varchar(255)
@@ -110,6 +104,7 @@ id int auto_increment primary key
 ,created_at datetime
 ,updated_at datetime
 ,cast_id int
+,movie_id int
 ,status int
 ,is_visible int
 );
