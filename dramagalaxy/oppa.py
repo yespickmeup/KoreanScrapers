@@ -36,8 +36,8 @@ while loop == 0:
     url = default_url+str(page)
     page = int(page)
     print 'Url: '+str(url)
-
-    r = requests.get(default_url)
+    print '------------------------------------------------------------------------------------------------------------------------------------------'
+    r = requests.get(url)
     data = r.text
     soup = BeautifulSoup(data,"lxml")
 
@@ -72,8 +72,12 @@ while loop == 0:
             episode_mp41 = soup2.find_all("div",class_=re.compile('vmargin'))
             mp4s = []
             for mp4 in episode_mp4s:
-                mp4_iframe = mp4.find("iframe")['src']
-                mp4s.append(str(mp4_iframe))
+
+                try:
+                    mp4_iframe = mp4.find("iframe")['src']
+                    mp4s.append(str(mp4_iframe))
+                except Exception as e:
+                    mp4s = []
 
             r3 = requests.get(movie_link)
             data3 = r3.text
@@ -182,12 +186,13 @@ while loop == 0:
 
             movie_info.append([episode_title,episode_link,movie_title,movie_link,movie_thumb,movie_description,movie_category,movie_status,video_tags,movie_released,mp4s])
             movie_lists.append([movie_info,movie_casts])
-            #db.save_to_db(movie_lists)
+            db.save_to_db(movie_lists)
             movie_info = []
             movie_casts = []
             movie_lists = []
 
     page-=1
-    loop=1
+    loop=0
 
+print 'Oppa Mashisoyo!!!'
 
